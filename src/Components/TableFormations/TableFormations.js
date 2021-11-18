@@ -15,8 +15,8 @@ function TableFormations(props) {
                 </thead>
                 <tbody>
                 {
-                    props.dataApi &&
-                    props.dataApi.map(formation => {
+                    props.dataFormations &&
+                    props.dataFormations.map(formation => {
                         return(
                             <tr key="formation.id">
                                 <td>{formation.id}</td>

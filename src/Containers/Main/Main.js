@@ -1,21 +1,14 @@
 import {Container, Button} from 'react-bootstrap';
 import TitreH1 from '../../Components/TitreH1/TitreH1';
 import TableFormations from '../../Components/TableFormations/TableFormations';
-import { useState, useEffect } from 'react';
-import axios from 'axios';
+import { useEffect } from 'react';
+import useLoadData from '../../Hooks/useLoadData';
 
 function Main(){
-    const [dataApi, setDataApi] = useState(null);
+    const [dataFormations, loadDataFormations] = useLoadData();
 
     useEffect(() => {
-        axios.get('https://dev.h2prog.com/API_TEST/formations')
-            .then(response => {
-                // console.log(response);
-                setDataApi(response.data)
-            })
-            .catch(error => {
-                console.log(error)
-            })
+        loadDataFormations('https://dev.h2prog.com/API_TEST/formations');
     },[]);
 
     return(
@@ -26,7 +19,7 @@ function Main(){
                 <Button variant="outline-info">PHP</Button>{' '}
                 <Button variant="outline-info">Javascript</Button>{' '}
                 <Button variant="outline-info">Algorithmique</Button>{' '}
-                <TableFormations dataApi = {dataApi}/>
+                <TableFormations dataFormations = {dataFormations}/>
             </Container>
         </>
     )
